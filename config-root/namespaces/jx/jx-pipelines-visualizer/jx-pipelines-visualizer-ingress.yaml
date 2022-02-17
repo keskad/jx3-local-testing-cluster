@@ -19,7 +19,7 @@ metadata:
   namespace: jx
 spec:
   rules:
-    - host: dashboard.jx.6fc6-188-121-15-4.ngrok.io
+    - host: dashboard.jx.keskadjx3.loca.lt
       http:
         paths:
           - pathType: ImplementationSpecific

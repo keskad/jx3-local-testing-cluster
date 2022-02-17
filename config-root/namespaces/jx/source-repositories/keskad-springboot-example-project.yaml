@@ -1,0 +1,22 @@
+apiVersion: jenkins.io/v1
+kind: SourceRepository
+metadata:
+  creationTimestamp: null
+  labels:
+    owner: keskad
+    provider: github
+    repository: springboot-example-project
+    gitops.jenkins-x.io/pipeline: 'namespaces'
+  name: keskad-springboot-example-project
+  namespace: jx
+spec:
+  httpCloneURL: https://github.com/keskad/springboot-example-project.git
+  org: keskad
+  provider: https://github.com
+  providerKind: github
+  providerName: github
+  repo: springboot-example-project
+  scheduler:
+    kind: ""
+    name: in-repo
+  url: https://github.com/keskad/springboot-example-project

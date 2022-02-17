@@ -22,7 +22,7 @@ spec:
     repository: jx3-local-testing-cluster
   - key: staging
   ingress:
-    domain: 6fc6-188-121-15-4.ngrok.io
+    domain: keskadjx3.loca.lt
     ignoreLoadBalancer: true
     kind: ingress
     namespaceSubDomain: .jx.

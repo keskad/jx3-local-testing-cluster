@@ -38,7 +38,7 @@ jxRequirements:
     repository: jx3-local-testing-cluster
   - key: staging
   ingress:
-    domain: change.me
+    domain: 172.19.0.3.nip.io
     ignoreLoadBalancer: true
     kind: ingress
     namespaceSubDomain: .jx.

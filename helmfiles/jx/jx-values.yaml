@@ -51,7 +51,7 @@ jxRequirements:
   repository: bucketrepo
   secretStorage: vault
   vault:
-    url: vault.vault.svc.cluster.local:8200
+    url: http://vault.vault.svc.cluster.local:8200
   webhook: lighthouse
 jxRequirementsIngressExternalDNS:
   enabled: false

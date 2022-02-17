@@ -34,6 +34,8 @@ jxRequirements:
     registry: ghcr.io
   environments:
   - key: dev
+    owner: keskad
+    repository: jx3-local-testing-cluster
   - key: staging
   ingress:
     domain: change.me
@@ -44,6 +46,8 @@ jxRequirements:
       email: ""
       enabled: false
       production: false
+  pipelineUser:
+    username: keskad
   repository: bucketrepo
   secretStorage: vault
   vault:

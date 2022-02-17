@@ -5,8 +5,8 @@ spec:
     enabled: false
     schedule: ""
   cluster:
-    chartRepository: https://github.com/jenkins-x-bdd/repo.git
     chartKind: pages
+    chartRepository: https://github.com/jenkins-x-bdd/repo.git
     clusterName: kind
     devEnvApprovers:
     - todo
@@ -18,10 +18,11 @@ spec:
     registry: ghcr.io
   environments:
   - key: dev
+    owner: keskad
+    repository: jx3-local-testing-cluster
   - key: staging
   ingress:
     domain: ""
-    externalDNS: false
     ignoreLoadBalancer: true
     kind: ingress
     namespaceSubDomain: .jx.
@@ -29,8 +30,10 @@ spec:
       email: ""
       enabled: false
       production: false
+  pipelineUser:
+    username: keskad
   repository: bucketrepo
   secretStorage: vault
   vault:
-    url: "127.0.0.1:8200"
+    url: 127.0.0.1:8200
   webhook: lighthouse

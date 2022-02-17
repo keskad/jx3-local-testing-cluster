@@ -1,0 +1,9 @@
+apiVersion: ngrok.com/v1alpha1
+kind: Ngrok
+metadata:
+  name: traefik-http
+  namespace: kube-system
+spec:
+  protocol: http
+  service: traefik
+  port: 80

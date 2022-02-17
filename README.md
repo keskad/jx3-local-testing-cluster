@@ -29,7 +29,7 @@ In another terminal run:
 export VAULT_ADDR='http://0.0.0.0:8200'
 vault auth enable kubernetes
 ```
-
+  
 ## Installation
 
 - Generate a cluster git repository from this template, by clicking [here](https://github.com/ankitm123/jx3-k3s-vault/generate)

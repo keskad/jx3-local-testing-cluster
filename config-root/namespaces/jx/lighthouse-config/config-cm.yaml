@@ -8,6 +8,7 @@ data:
     in_repo_config:
       enabled:
         keskad/jx3-local-testing-cluster: true
+        keskad/springboot-example-project: true
     plank: {}
     pod_namespace: jx
     prowjob_namespace: jx
@@ -20,6 +21,7 @@ data:
         skip-unknown-contexts: false
       merge_method:
         keskad/jx3-local-testing-cluster: merge
+        keskad/springboot-example-project: merge
       queries:
       - labels:
         - approved
@@ -31,6 +33,7 @@ data:
         - needs-rebase
         repos:
         - keskad/jx3-local-testing-cluster
+        - keskad/springboot-example-project
       - labels:
         - updatebot
         missingLabels:
@@ -41,6 +44,7 @@ data:
         - needs-rebase
         repos:
         - keskad/jx3-local-testing-cluster
+        - keskad/springboot-example-project
       target_url: http://lighthouse.jx./merge/status
 kind: ConfigMap
 metadata:

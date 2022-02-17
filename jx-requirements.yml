@@ -33,7 +33,5 @@ spec:
   pipelineUser:
     username: keskad
   repository: bucketrepo
-  secretStorage: local
-  vault:
-    url: 127.0.0.1:8200
+  secretStorage: vault
   webhook: lighthouse

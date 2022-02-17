@@ -1,6 +1,6 @@
 apiVersion: gitops.jenkins-x.io/v1alpha1
 kind: Scheduler
-metadata:
+metadata: # kpt-merge: /environment-review-required
   name: environment-review-required
 spec:
   approve:
@@ -13,9 +13,9 @@ spec:
     merge_method: merge
     policy:
       from-branch-protection: true
-      optional-contexts: { }
-      required-contexts: { }
-      required-if-present-contexts: { }
+      optional-contexts: {}
+      required-contexts: {}
+      required-if-present-contexts: {}
       skip-unknown-contexts: false
     pr_status_base_url: ""
     squash_label: ""
@@ -39,10 +39,10 @@ spec:
   external_plugins:
     Replace: true
     entries:
-    - name: cd-indicators
-      endpoint: "http://cd-indicators.jx.svc.cluster.local/lighthouse/events"
-    - name: lighthouse-webui-plugin
-      endpoint: "http://lighthouse-webui-plugin.jx.svc.cluster.local/lighthouse/events"
+      - name: cd-indicators
+        endpoint: "http://cd-indicators.jx.svc.cluster.local/lighthouse/events"
+      - name: lighthouse-webui-plugin
+        endpoint: "http://lighthouse-webui-plugin.jx.svc.cluster.local/lighthouse/events"
   policy:
     protect_tested: true
   postsubmits:
@@ -60,13 +60,13 @@ spec:
         name: promotion
         report: false
         run_if_changed: ""
-        skip_branches: [ ]
+        skip_branches: []
   presubmits:
     replace: true
     entries:
       - agent: tekton
         always_run: true
-        branches: [ ]
+        branches: []
         cluster: ""
         context: promotion-build
         labels:
@@ -77,7 +77,7 @@ spec:
         report: true
         rerun_command: /test this
         run_if_changed: ""
-        skip_branches: [ ]
+        skip_branches: []
         trigger: (?m)^/test( all| this),?(\s+|$)
   merge_method: ""
   protection_policy:
@@ -86,8 +86,8 @@ spec:
         entries:
           - promotion-build
   queries:
-    - excludedBranches: { }
-      included_branches: { }
+    - excludedBranches: {}
+      included_branches: {}
       milestone: ""
       missingLabels:
         entries:

@@ -1,6 +1,6 @@
 apiVersion: batch/v1
 kind: Job
-metadata:
+metadata: # kpt-merge: /
   labels:
     app: jx-boot
     jenkins-x.io/kind: jx-git-operator

@@ -16,7 +16,7 @@ jobs:
         JENKINS_PASSWORD: ${{ secrets.JENKINS_PASSWORD }}
         GITHUB_RUN_ID: ${{ secrets.GITHUB_RUN_ID }}
         GITHUB_RUN_NUMBER: ${{ secrets.GITHUB_RUN_NUMBER }}
-      run: |
+      run: |2
 
         if [ -z "$GH_ACCESS_TOKEN" ]
         then

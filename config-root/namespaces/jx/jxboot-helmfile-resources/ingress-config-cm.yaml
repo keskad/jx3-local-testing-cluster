@@ -1,7 +1,7 @@
 # Source: jxboot-helmfile-resources/templates/ingress-config-configmap.yaml
 apiVersion: v1
 data:
-  domain: "keskadjx3.loca.lt"
+  domain: "k3s-dev.keskad.pl"
   email: ""
   exposer: "Ingress"
   issuer: ""

@@ -45,7 +45,7 @@ data:
         repos:
         - keskad/jx3-local-testing-cluster
         - keskad/springboot-example-project
-      target_url: http://lighthouse.jx.keskadjx3.loca.lt/merge/status
+      target_url: http://lighthouse.jx.k3s-dev.keskad.pl/merge/status
 kind: ConfigMap
 metadata:
   creationTimestamp: null

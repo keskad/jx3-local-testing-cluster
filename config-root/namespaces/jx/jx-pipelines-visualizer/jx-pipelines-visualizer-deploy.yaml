@@ -39,7 +39,7 @@ spec:
             - -resync-interval
             - 60s
             - -pipeline-trace-url-template
-            - http://grafana.jx-observability.keskadjx3.loca.lt/explore?left=%5B%22now%22,%22now%22,%22Tempo%22,%7B%22query%22:%22{{.TraceID}}%22%7D%5D
+            - http://grafana.jx-observability.k3s-dev.keskad.pl/explore?left=%5B%22now%22,%22now%22,%22Tempo%22,%7B%22query%22:%22{{.TraceID}}%22%7D%5D
             - -log-level
             - INFO
           ports:

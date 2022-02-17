@@ -19,7 +19,7 @@ metadata:
   namespace: jx
 spec:
   rules:
-    - host: dashboard.jx.keskadjx3.loca.lt
+    - host: dashboard.jx.k3s-dev.keskad.pl
       http:
         paths:
           - pathType: ImplementationSpecific

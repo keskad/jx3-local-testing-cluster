@@ -38,7 +38,7 @@ jxRequirements:
     repository: jx3-local-testing-cluster
   - key: staging
   ingress:
-    domain: keskadjx3.loca.lt
+    domain: k3s-dev.keskad.pl
     ignoreLoadBalancer: true
     kind: ingress
     namespaceSubDomain: .tekton-pipelines.

@@ -20,4 +20,4 @@ spec:
                 port:
                   number: 80
             path: "/hook"
-      host: hook.jx.keskadjx3.loca.lt
+      host: hook.jx.k3s-dev.keskad.pl

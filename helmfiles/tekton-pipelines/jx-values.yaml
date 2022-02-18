@@ -22,7 +22,7 @@ jxRequirements:
     schedule: ""
   cluster:
     chartKind: pages
-    chartRepository: https://github.com/jenkins-x-bdd/repo.git
+    chartRepository: https://github.com/keskad/jx3-test-charts-repository.git
     clusterName: kind
     devEnvApprovers:
     - todo

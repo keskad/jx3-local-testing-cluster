@@ -1,4 +1,8 @@
 filepath: ""
+environments:
+  default:
+    values:
+    - jx-values.yaml
 namespace: jx-staging
 repositories:
 - name: dev
@@ -7,5 +11,7 @@ releases:
 - chart: dev/springboot-example-project
   version: 0.3.0
   name: springboot-example-project
+  values:
+  - jx-values.yaml
 templates: {}
 renderedvalues: {}

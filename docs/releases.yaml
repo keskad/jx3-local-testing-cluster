@@ -120,3 +120,17 @@
     repositoryUrl: https://cdfoundation.github.io/tekton-helm-chart
     resourcePath: config-root/namespaces/tekton-pipelines/tekton-pipeline
     version: 0.27.2
+- namespace: jx-staging
+  path: helmfiles/jx-staging/helmfile.yaml
+  releases:
+  - apiVersion: v1
+    appVersion: 0.3.0
+    description: A Helm chart for Kubernetes
+    firstDeployed: "2022-02-18T15:13:40Z"
+    icon: https://raw.githubusercontent.com/cdfoundation/artwork/master/jenkinsx/icon/color/jenkinsx-icon-color.png
+    lastDeployed: "2022-02-18T15:13:40Z"
+    name: springboot-example-project
+    repositoryName: dev
+    repositoryUrl: https://keskad.github.io/jx3-test-charts-repository/
+    resourcePath: config-root/namespaces/jx-staging/springboot-example-project
+    version: 0.3.0

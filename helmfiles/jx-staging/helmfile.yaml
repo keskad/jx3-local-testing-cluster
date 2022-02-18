@@ -1,0 +1,11 @@
+filepath: ""
+namespace: jx-staging
+repositories:
+- name: dev
+  url: https://keskad.github.io/jx3-test-charts-repository/
+releases:
+- chart: dev/springboot-example-project
+  version: 0.3.0
+  name: springboot-example-project
+templates: {}
+renderedvalues: {}

@@ -1,0 +1,10 @@
+# Source: springboot-example-project/templates/sa.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: springboot-example-project-springboot-example-project
+  annotations:
+    meta.helm.sh/release-name: 'springboot-example-project'
+  namespace: jx-staging
+  labels:
+    gitops.jenkins-x.io/pipeline: 'namespaces'

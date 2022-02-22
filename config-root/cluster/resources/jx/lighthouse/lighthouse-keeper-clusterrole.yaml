@@ -1,13 +1,12 @@
 # Source: lighthouse/templates/keeper-role.yaml
-kind: Role
+kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: lighthouse-keeper
   annotations:
     meta.helm.sh/release-name: 'lighthouse'
-  namespace: jx
   labels:
-    gitops.jenkins-x.io/pipeline: 'namespaces'
+    gitops.jenkins-x.io/pipeline: 'cluster'
 rules:
   - apiGroups:
       - ""

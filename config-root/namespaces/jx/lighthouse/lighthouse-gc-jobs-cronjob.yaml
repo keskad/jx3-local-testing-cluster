@@ -27,10 +27,9 @@ spec:
           containers:
             - command:
                 - /home/jx/gc-jobs
-              image: ghcr.io/jenkins-x/lighthouse-gc-jobs:1.5.10
+              image: quay.io/keskad//lighthouse-gc-jobs:latest
               imagePullPolicy: IfNotPresent
               args:
-                - "--namespace=jx"
                 - "--max-age=168h"
               name: lighthouse-gc-jobs
               resources: {}
@@ -43,6 +42,6 @@ spec:
           terminationGracePeriodSeconds: 30
           serviceAccountName: lighthouse-gc-jobs
   successfulJobsHistoryLimit: 3
-  schedule: "0/30 * * * *"
+  schedule: "00 * * * *"
   startingDeadlineSeconds: 4000
   suspend: false

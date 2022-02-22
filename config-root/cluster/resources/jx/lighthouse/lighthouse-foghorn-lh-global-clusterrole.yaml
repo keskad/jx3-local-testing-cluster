@@ -1,24 +1,13 @@
-# Source: lighthouse/templates/gc-jobs-role.yaml
-kind: Role
+# Source: lighthouse/templates/foghorn-role.yaml
+kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: lighthouse-gc-jobs
+  name: lighthouse-foghorn-lh-global
   annotations:
     meta.helm.sh/release-name: 'lighthouse'
-  namespace: jx
   labels:
-    gitops.jenkins-x.io/pipeline: 'namespaces'
+    gitops.jenkins-x.io/pipeline: 'cluster'
 rules:
-  - apiGroups:
-      - ""
-    resources:
-      - namespaces
-      - configmaps
-      - secrets
-    verbs:
-      - get
-      - list
-      - watch
   - apiGroups:
       - lighthouse.jenkins.io
     resources:

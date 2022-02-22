@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: lighthouse-poller
   labels:
-    chart: "lighthouse-1.5.10"
+    chart: "lighthouse-0.1.0-SNAPSHOT"
     app: lighthouse-poller
     gitops.jenkins-x.io/pipeline: 'namespaces'
   annotations:
@@ -33,7 +33,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: lighthouse-poller
-          image: ghcr.io/jenkins-x/lighthouse-poller:1.5.10
+          image: quay.io/keskad//lighthouse-poller:latest
           imagePullPolicy: IfNotPresent
           args:
             - "--namespace=jx"
@@ -81,7 +81,7 @@ spec:
             - name: LOGRUS_SERVICE
               value: "lighthouse"
             - name: LOGRUS_SERVICE_VERSION
-              value: "1.5.10"
+              value: "0.1.0-SNAPSHOT"
             - name: LOGRUS_STACK_SKIP
               value: ""
             - name: POLL_HOOK_ENDPOINT

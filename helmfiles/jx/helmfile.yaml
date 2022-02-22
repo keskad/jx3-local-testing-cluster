@@ -9,6 +9,8 @@ repositories:
   url: https://charts.helm.sh/stable
 - name: jxgh
   url: https://jenkins-x-charts.github.io/repo
+- name: keskad
+  url: https://keskad.github.io/jx3-test-charts
 releases:
 - chart: jxgh/jxboot-helmfile-resources
   version: 1.1.29
@@ -28,8 +30,8 @@ releases:
   name: jx-preview
   values:
   - jx-values.yaml
-- chart: jxgh/lighthouse
-  version: 1.5.10
+- chart: keskad/lighthouse
+  version: 0.1.0-SNAPSHOT
   name: lighthouse
   values:
   - ../../versionStream/charts/jxgh/lighthouse/values.yaml.gotmpl

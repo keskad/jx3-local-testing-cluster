@@ -1,2 +1,32 @@
+useMultipleNamespaces: true
+
 poller:
   enabled: true
+
+image:
+    parentRepository: quay.io/keskad/
+    tag: latest
+
+gcJobs:
+    schedule: "00 * * * *"
+#    image:
+#        repository: ""
+
+webhooks:
+    image:
+        repository: quay.io/keskad/jx3-test-webhooks
+
+foghorn:
+    image:
+        repository: quay.io/keskad/jx3-test-foghorn
+
+tektoncontroller:
+    image:
+        repository: quay.io/keskad/jx3-test-tekton
+
+keeper:
+    image:
+        repository: quay.io/keskad/jx3-test-keeper
+
+engines:
+    tekton: true

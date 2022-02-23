@@ -4,7 +4,7 @@ poller:
   enabled: true
 
 image:
-    parentRepository: quay.io/keskad/
+#    parentRepository: quay.io/keskad/
     tag: latest
 
 gcJobs:

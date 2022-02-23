@@ -33,7 +33,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: lighthouse-poller
-          image: quay.io/keskad//lighthouse-poller:latest
+          image: ghcr.io/jenkins-x/lighthouse-poller:latest
           imagePullPolicy: IfNotPresent
           args:
             - "--namespace=jx"

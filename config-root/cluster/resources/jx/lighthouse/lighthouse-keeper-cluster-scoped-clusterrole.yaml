@@ -1,22 +1,13 @@
-# Source: lighthouse/templates/keeper-role.yaml
+# Source: lighthouse/templates/keeper-clusterrole.yaml
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: lighthouse-keeper
+  name: lighthouse-keeper-cluster-scoped
   annotations:
     meta.helm.sh/release-name: 'lighthouse'
   labels:
     gitops.jenkins-x.io/pipeline: 'cluster'
 rules:
-  - apiGroups:
-      - ""
-    resources:
-      - namespaces
-      - configmaps
-    verbs:
-      - get
-      - list
-      - watch
   - apiGroups:
       - tekton.dev
     resources:

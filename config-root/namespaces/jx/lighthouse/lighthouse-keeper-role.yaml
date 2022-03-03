@@ -1,8 +1,8 @@
-# Source: lighthouse/templates/foghorn-role.yaml
+# Source: lighthouse/templates/keeper-role.yaml
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: lighthouse-foghorn
+  name: lighthouse-keeper
   annotations:
     meta.helm.sh/release-name: 'lighthouse'
   namespace: jx
@@ -14,7 +14,6 @@ rules:
     resources:
       - namespaces
       - configmaps
-      - secrets
     verbs:
       - get
       - list

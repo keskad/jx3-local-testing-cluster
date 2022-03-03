@@ -5,6 +5,7 @@ poller:
 
 image:
 #    parentRepository: quay.io/keskad/
+    parentRepository: ghcr.io/jenkins-x
     tag: latest
 
 gcJobs:

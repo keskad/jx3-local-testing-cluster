@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: lighthouse-keeper
   labels:
-    chart: "lighthouse-0.5.0"
+    chart: "lighthouse-0.6.0"
     app: lighthouse-keeper
     gitops.jenkins-x.io/pipeline: 'namespaces'
   annotations:
@@ -77,7 +77,7 @@ spec:
             - name: LOGRUS_SERVICE
               value: "lighthouse"
             - name: LOGRUS_SERVICE_VERSION
-              value: "0.5.0"
+              value: "0.6.0"
             - name: LOGRUS_STACK_SKIP
               value: ""
             - name: "LIGHTHOUSE_KEEPER_STATUS_CONTEXT_LABEL"

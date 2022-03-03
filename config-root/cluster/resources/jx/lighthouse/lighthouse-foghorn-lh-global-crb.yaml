@@ -1,4 +1,4 @@
-# Source: lighthouse/templates/foghorn-rb.yaml
+# Source: lighthouse/templates/foghorn-crb.yaml
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:

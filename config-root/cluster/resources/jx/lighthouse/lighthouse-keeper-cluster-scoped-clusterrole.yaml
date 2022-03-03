@@ -27,6 +27,7 @@ rules:
       - lighthouse.jenkins.io
     resources:
       - lighthousejobs
+      - lighthousepipelinesecuritypolicies
     verbs:
       - create
       - delete

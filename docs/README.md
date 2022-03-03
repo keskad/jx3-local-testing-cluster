@@ -28,7 +28,7 @@
 	    </tr>
     <tr>
 	      <td><a href='https://github.com/jenkins-x/lighthouse' title='This chart bootstraps installation of [Lighthouse](https://github.com/jenkins-x/lighthouse). '> <img src='https://raw.githubusercontent.com/jenkins-x/jenkins-x-website/master/images/logo/jenkinsx-icon-color.svg' width='24px' height='24px'> lighthouse </a></td>
-	      <td>0.4.0</td>
+	      <td>0.5.0</td>
 	      <td></td>
 	      <td><a href='https://github.com/jenkins-x/lighthouse'>source</a></td>
 	    </tr>
@@ -67,15 +67,6 @@
 	      <td>0.27.2</td>
 	      <td></td>
 	      <td><a href='https://github.com/cdfoundation/tekton-helm-chart'>source</a></td>
-	    </tr>
-    <tr>
-		      <td colspan='4'><h3>jx-staging</h3></td>
-		    </tr>
-	    <tr>
-	      <td><a href='' title='A Helm chart for Kubernetes'> <img src='https://raw.githubusercontent.com/cdfoundation/artwork/master/jenkinsx/icon/color/jenkinsx-icon-color.png' width='24px' height='24px'> springboot-example-project </a></td>
-	      <td>0.3.0</td>
-	      <td></td>
-	      <td></td>
 	    </tr>
 
   </tbody>

@@ -27,7 +27,7 @@ keeper:
         repository: quay.io/keskad/jx3-test-keeper
 
 poller:
-    enabled: true
+    enabled: false
     image:
         repository: quay.io/keskad/jx3-test-poller
 

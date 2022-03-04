@@ -1,8 +1,5 @@
 useMultipleNamespaces: true
 
-poller:
-  enabled: true
-
 image:
 #    parentRepository: quay.io/keskad/
     parentRepository: ghcr.io/jenkins-x
@@ -10,8 +7,8 @@ image:
 
 gcJobs:
     schedule: "00 * * * *"
-#    image:
-#        repository: ""
+    image:
+        repository: quay.io/keskad/jx3-test-gc
 
 webhooks:
     image:
@@ -28,6 +25,11 @@ tektoncontroller:
 keeper:
     image:
         repository: quay.io/keskad/jx3-test-keeper
+
+poller:
+    enabled: true
+    image:
+        repository: quay.io/keskad/jx3-test-poller
 
 engines:
     tekton: true

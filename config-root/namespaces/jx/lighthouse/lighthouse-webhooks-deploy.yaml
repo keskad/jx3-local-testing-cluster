@@ -32,6 +32,8 @@ spec:
         - name: lighthouse-webhooks
           image: quay.io/keskad/jx3-test-webhooks:latest
           imagePullPolicy: IfNotPresent
+          args:
+            - "--config-namespace=jx"
           env:
             - name: "GIT_KIND"
               value: "github"

@@ -1,0 +1,3 @@
+image:
+    repository: quay.io/keskad/jx3-test-jx-build-controller
+    tag: latest

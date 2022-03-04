@@ -37,12 +37,13 @@ releases:
   - ../../versionStream/charts/jxgh/lighthouse/values.yaml.gotmpl
   - jx-values.yaml
   - lighthouse-values.yaml
-- chart: jxgh/jx-build-controller
-  version: 0.3.9
+- chart: keskad/jx-build-controller
+  version: 0.1.0
   name: jx-build-controller
   values:
   - ../../versionStream/charts/jxgh/jx-build-controller/values.yaml.gotmpl
   - jx-values.yaml
+  - jx-build-controller.yaml
 - chart: jxgh/jx-pipelines-visualizer
   version: 1.7.5
   name: jx-pipelines-visualizer

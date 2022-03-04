@@ -36,6 +36,7 @@ spec:
           image: ghcr.io/jenkins-x/lighthouse-poller:latest
           imagePullPolicy: IfNotPresent
           args:
+            - "--config-namespace=jx"
           ports:
             - name: http
               containerPort: 8888

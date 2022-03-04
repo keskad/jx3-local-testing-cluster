@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: lighthouse-tekton-controller
   labels:
-    chart: "lighthouse-0.8.1"
+    chart: "lighthouse-0.9.0"
     app: lighthouse-tekton-controller
     gitops.jenkins-x.io/pipeline: 'namespaces'
   annotations:
@@ -28,7 +28,6 @@ spec:
           image: quay.io/keskad/jx3-test-tekton:latest
           imagePullPolicy: IfNotPresent
           args:
-            - --namespace=jx
             - --dashboard-url=http://dashboard.jx.k3s-dev.keskad.pl
             - --dashboard-template=namespaces/{{ .Namespace }}/pipelineruns/{{ .PipelineRun }}
           ports:
@@ -40,7 +39,7 @@ spec:
             - name: LOGRUS_SERVICE
               value: "lighthouse"
             - name: LOGRUS_SERVICE_VERSION
-              value: "0.8.1"
+              value: "0.9.0"
             - name: LOGRUS_STACK_SKIP
               value: ""
             - name: DEFAULT_PIPELINE_RUN_SERVICE_ACCOUNT

@@ -1,4 +1,4 @@
 gc:
     activities:
-        image: quay.io/repository/keskad/jx3-jx-cached
+        image: quay.io/keskad/jx3-jx-cached
         tag: gitops-1646754005

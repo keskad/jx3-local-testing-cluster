@@ -1,37 +1,34 @@
-# Source: lighthouse/templates/gc-jobs-role.yaml
-kind: ClusterRole
+# Source: lighthouse/templates/webhooks-role.yaml
+kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: lighthouse-gc-jobs-global-lh
+  name: lighthouse-webhooks
   annotations:
     meta.helm.sh/release-name: 'lighthouse'
+  namespace: jx
   labels:
-    gitops.jenkins-x.io/pipeline: 'cluster'
+    gitops.jenkins-x.io/pipeline: 'namespaces'
 rules:
   - apiGroups:
-      - lighthouse.jenkins.io
+      - ""
     resources:
-      - lighthousejobs
+      - namespaces
+      - configmaps
+      - secrets
     verbs:
-      - create
-      - delete
-      - list
-      - update
       - get
+      - update
+      - create
+      - list
       - watch
-      - patch
   - apiGroups:
-      - lighthouse.jenkins.io
+      - ""
     resources:
-      - lighthousejobs/status
+      - services
     verbs:
-      - create
-      - delete
-      - list
-      - update
       - get
+      - list
       - watch
-      - patch
   - apiGroups:
       - lighthouse.jenkins.io
     resources:

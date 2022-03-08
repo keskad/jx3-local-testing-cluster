@@ -33,7 +33,7 @@ spec:
                 - activities
                 - "--all-namespaces"
               imagePullPolicy: IfNotPresent
-              image: "ghcr.io/jenkins-x/jx-boot:3.2.253"
+              image: "quay.io/repository/keskad/jx3-jx-cached:gitops-1646754005"
               env:
                 - name: JX_LOG_FORMAT
                   value: json

@@ -4,6 +4,7 @@ image:
 #    parentRepository: quay.io/keskad/
     parentRepository: ghcr.io/jenkins-x
     tag: latest
+    pullPolicy: Always
 
 gcJobs:
     schedule: "00 * * * *"

@@ -19,6 +19,7 @@ releases:
   - jxboot-helmfile-resources-values.yaml
   - ../../versionStream/charts/jxgh/jxboot-helmfile-resources/values.yaml.gotmpl
   - jx-values.yaml
+  - jxboot-helmfile-resources-test-values.yaml
 - chart: jxgh/jenkins-x-crds
   version: 3.0.12
   name: jenkins-x-crds

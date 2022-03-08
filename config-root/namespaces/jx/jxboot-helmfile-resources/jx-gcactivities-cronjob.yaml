@@ -31,6 +31,7 @@ spec:
                 - gitops
                 - gc
                 - activities
+                - "--all-namespaces"
               imagePullPolicy: IfNotPresent
               image: "ghcr.io/jenkins-x/jx-boot:3.2.253"
               env:

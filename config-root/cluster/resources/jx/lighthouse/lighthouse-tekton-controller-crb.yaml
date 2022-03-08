@@ -1,4 +1,4 @@
-# Source: lighthouse/templates/tekton-controller-rb.yaml
+# Source: lighthouse/templates/tekton-controller-crb.yaml
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
@@ -10,7 +10,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: lighthouse-tekton-controller
+  name: lighthouse-tekton-controller-cluster-scoped
 subjects:
   - kind: ServiceAccount
     name: lighthouse-tekton-controller

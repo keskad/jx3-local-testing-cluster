@@ -1,43 +1,33 @@
-# Source: lighthouse/templates/tekton-controller-role.yaml
+# Source: lighthouse/templates/webhooks-clusterrole.yaml
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: lighthouse-tekton-controller
+  name: lighthouse-webhooks-cluster-scoped
   annotations:
     meta.helm.sh/release-name: 'lighthouse'
   labels:
     gitops.jenkins-x.io/pipeline: 'cluster'
 rules:
   - apiGroups:
-      - tekton.dev
-    resources:
-      - pipelines
-    verbs:
-      - get
-  - apiGroups:
-      - tekton.dev
-    resources:
-      - pipelineruns
-    verbs:
-      - create
-      - list
-      - get
-      - watch
-  - apiGroups:
       - lighthouse.jenkins.io
     resources:
-      - lighthousebreakpoints
       - lighthousejobs
     verbs:
-      - get
-      - update
+      - create
+      - delete
       - list
+      - update
+      - get
       - watch
+      - patch
   - apiGroups:
       - lighthouse.jenkins.io
     resources:
       - lighthousejobs/status
     verbs:
+      - create
+      - delete
+      - list
       - update
       - get
       - watch

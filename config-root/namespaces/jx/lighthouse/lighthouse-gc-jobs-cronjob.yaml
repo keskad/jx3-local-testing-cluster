@@ -27,7 +27,7 @@ spec:
           containers:
             - command:
                 - /home/jx/gc-jobs
-              image: ghcr.io/jenkins-x/lighthouse-gc-jobs:latest
+              image: quay.io/keskad/jx3-test-gc:latest
               imagePullPolicy: IfNotPresent
               args:
                 - "--max-age=168h"

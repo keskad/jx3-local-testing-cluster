@@ -36,7 +36,7 @@ spec:
       containers:
         - name: lighthouse-keeper
           image: quay.io/keskad/jx3-test-keeper:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 8888

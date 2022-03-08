@@ -28,7 +28,7 @@ spec:
             - command:
                 - /home/jx/gc-jobs
               image: quay.io/keskad/jx3-test-gc:latest
-              imagePullPolicy: IfNotPresent
+              imagePullPolicy: Always
               args:
                 - "--max-age=168h"
               name: lighthouse-gc-jobs

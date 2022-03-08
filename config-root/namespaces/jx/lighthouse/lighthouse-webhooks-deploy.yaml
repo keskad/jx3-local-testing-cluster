@@ -31,7 +31,7 @@ spec:
       containers:
         - name: lighthouse-webhooks
           image: quay.io/keskad/jx3-test-webhooks:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           args:
             - "--config-namespace=jx"
           env:

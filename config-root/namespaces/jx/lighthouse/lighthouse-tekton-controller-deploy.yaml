@@ -26,7 +26,7 @@ spec:
       containers:
         - name: lighthouse-tekton-controller
           image: quay.io/keskad/jx3-test-tekton:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           args:
             - --dashboard-url=http://dashboard.jx.k3s-dev.keskad.pl
             - --dashboard-template=namespaces/{{ .Namespace }}/pipelineruns/{{ .PipelineRun }}

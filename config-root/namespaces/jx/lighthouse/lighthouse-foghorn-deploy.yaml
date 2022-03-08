@@ -27,7 +27,7 @@ spec:
       containers:
         - name: lighthouse-foghorn
           image: quay.io/keskad/jx3-test-foghorn:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           args:
             - "--config-namespace=jx"
           env:

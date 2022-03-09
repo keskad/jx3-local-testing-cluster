@@ -33,7 +33,7 @@ spec:
                 - activities
                 - "--all-namespaces"
               imagePullPolicy: IfNotPresent
-              image: "quay.io/keskad/jx3-jx-cached:gitops-1646754005"
+              image: "quay.io/keskad/jx3-jx-cached:gitops-1646816497"
               env:
                 - name: JX_LOG_FORMAT
                   value: json

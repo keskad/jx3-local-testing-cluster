@@ -2,3 +2,5 @@ gc:
     activities:
         image: quay.io/keskad/jx3-jx-cached
         tag: gitops-1646816497
+
+        extraArgs: ["--release-age", "1h0m0s", "--release-history-limit", "1", "--pr-history-limit", "1", "--pipelinerun-age", "1h0m0s", "--prowjob-age", "5h0m0s"]

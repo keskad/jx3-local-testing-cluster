@@ -38,7 +38,7 @@ spec:
                 - --pipelinerun-age=1h0m0s
                 - --prowjob-age=5h0m0s
               imagePullPolicy: IfNotPresent
-              image: "quay.io/keskad/jx3-jx-cached:gitops-1646816497"
+              image: "quay.io/keskad/jx3-jx-cached:gitops-1647016308"
               env:
                 - name: JX_LOG_FORMAT
                   value: json

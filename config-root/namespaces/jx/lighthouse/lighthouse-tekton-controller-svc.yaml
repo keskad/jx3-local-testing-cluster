@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: lighthouse-tekton-controller
   labels:
-    chart: "lighthouse-0.10.1"
+    chart: "lighthouse-0.12.0"
     gitops.jenkins-x.io/pipeline: 'namespaces'
   annotations:
     meta.helm.sh/release-name: 'lighthouse'

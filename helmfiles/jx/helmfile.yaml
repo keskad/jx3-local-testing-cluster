@@ -13,7 +13,7 @@ repositories:
   url: https://keskad.github.io/jx3-test-charts
 releases:
 - chart: keskad/jxboot-helmfile-resources
-  version: 0.2.0
+  version: 0.3.0
   name: jxboot-helmfile-resources
   values:
   - jxboot-helmfile-resources-values.yaml

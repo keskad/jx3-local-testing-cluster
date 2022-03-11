@@ -34,7 +34,7 @@ spec:
                 - --namespace
                 - jx-git-operator
               imagePullPolicy: IfNotPresent
-              image: "ghcr.io/jenkins-x/jx-boot:3.2.253"
+              image: "quay.io/keskad/jx3-jx-cached:gitops-1647016951"
               env:
                 - name: JX_LOG_FORMAT
                   value: json

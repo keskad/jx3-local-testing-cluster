@@ -1,13 +1,12 @@
-# Source: jxboot-helmfile-resources/templates/jx-gcpods-role.yaml
+# Source: jxboot-helmfile-resources/templates/jx-gcpods-clusterrole.yaml
 apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
+kind: ClusterRole
 metadata:
-  name: gcpods
+  name: gcpods-per-namespace
   annotations:
     meta.helm.sh/release-name: 'jxboot-helmfile-resources'
-  namespace: jx
   labels:
-    gitops.jenkins-x.io/pipeline: 'namespaces'
+    gitops.jenkins-x.io/pipeline: 'cluster'
 rules:
   - apiGroups:
       - jenkins.io

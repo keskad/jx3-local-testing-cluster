@@ -1,0 +1,18 @@
+# Source: jxboot-helmfile-resources/templates/jx-gcpods-clusterrole-ns.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: gcpods-cluster-scoped-ns-listing
+  annotations:
+    meta.helm.sh/release-name: 'jxboot-helmfile-resources'
+  labels:
+    gitops.jenkins-x.io/pipeline: 'cluster'
+rules:
+  # Only have to list namespaces to find those labelled namespaces, where pods should be deleted
+  - apiGroups:
+      - ""
+    resources:
+      - namespaces
+    verbs:
+      - get
+      - list

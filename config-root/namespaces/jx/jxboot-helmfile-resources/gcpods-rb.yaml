@@ -1,11 +1,11 @@
-# Source: jxboot-helmfile-resources/templates/jx-gcpods-crb.yaml
+# Source: jxboot-helmfile-resources/templates/jx-gcpods-rb.yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: gcpods
+  namespace: jx
   annotations:
     meta.helm.sh/release-name: 'jxboot-helmfile-resources'
-  namespace: jx
   labels:
     gitops.jenkins-x.io/pipeline: 'namespaces'
 roleRef:

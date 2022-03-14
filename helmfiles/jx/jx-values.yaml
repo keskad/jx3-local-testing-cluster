@@ -16,6 +16,9 @@ jx:
       email: jenkins-x@googlegroups.com
       token: todo
       username: jenkins-x-labs-bot
+jxJobsNamespaces:
+- jx
+- jx-test1
 jxRequirements:
   autoUpdate:
     enabled: false

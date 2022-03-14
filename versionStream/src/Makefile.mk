@@ -126,8 +126,30 @@ fetch: init $(COPY_SOURCE) $(REPOSITORY_RESOLVE)
 # generate the yaml from the charts in helmfile.yaml and moves them to the right directory tree (cluster or namespaces/foo)
 	helmfile --file helmfile.yaml template --validate --include-crds --output-dir-template /tmp/generate/{{.Release.Namespace}}/{{.Release.Name}}
 
+	echo "AFTER HELMFILE MOVE"
+	echo " >> DEBUG: /tmp/generate/jx/jxboot-helmfile-resources/jxboot-helmfile-resources/templates/jx-gcpods-other-ns-rb.yaml"
+	cat /tmp/generate/jx/jxboot-helmfile-resources/jxboot-helmfile-resources/templates/jx-gcpods-other-ns-rb.yaml || true
+	echo " >> DEBUG: /workspace/source/config-root/namespaces/jx/jxboot-helmfile-resources/gcpods-jx-test1-rb.yaml"
+	cat /workspace/source/config-root/namespaces/jx/jxboot-helmfile-resources/gcpods-jx-test1-rb.yaml || true
+
 	/tmp/jx-gitops split --dir /tmp/generate
+
+	echo "AFTER GITOPS SPLIT"
+	echo " >> DEBUG: /tmp/generate/jx/jxboot-helmfile-resources/jxboot-helmfile-resources/templates/jx-gcpods-other-ns-rb.yaml"
+	cat /tmp/generate/jx/jxboot-helmfile-resources/jxboot-helmfile-resources/templates/jx-gcpods-other-ns-rb.yaml || true
+	echo " >> DEBUG: /workspace/source/config-root/namespaces/jx/jxboot-helmfile-resources/gcpods-jx-test1-rb.yaml"
+	cat /workspace/source/config-root/namespaces/jx/jxboot-helmfile-resources/gcpods-jx-test1-rb.yaml || true
+
+
 	/tmp/jx-gitops rename --dir /tmp/generate
+
+	echo "AFTER GITOPS RENAME"
+	echo " >> DEBUG: /tmp/generate/jx/jxboot-helmfile-resources/jxboot-helmfile-resources/templates/jx-gcpods-other-ns-rb.yaml"
+	cat /tmp/generate/jx/jxboot-helmfile-resources/jxboot-helmfile-resources/templates/jx-gcpods-other-ns-rb.yaml || true
+	echo " >> DEBUG: /workspace/source/config-root/namespaces/jx/jxboot-helmfile-resources/gcpods-jx-test1-rb.yaml"
+	cat /workspace/source/config-root/namespaces/jx/jxboot-helmfile-resources/gcpods-jx-test1-rb.yaml || true
+
+
 	/tmp/jx-gitops helmfile move --output-dir config-root --dir /tmp/generate --dir-includes-release-name
 
 # convert k8s Secrets => ExternalSecret resources using secret mapping + schemas
@@ -141,6 +163,9 @@ fetch: init $(COPY_SOURCE) $(REPOSITORY_RESOLVE)
 #	-VAULT_ADDR=$(VAULT_ADDR) VAULT_NAMESPACE=$(VAULT_NAMESPACE) jx secret populate --source filesystem --secret-namespace $(VAULT_NAMESPACE)
 
 # lets make sure all the namespaces exist for environments of the replicated secrets
+	echo " >> DEBUG: /tmp/generate/jx/jxboot-helmfile-resources/jxboot-helmfile-resources/templates/jx-gcpods-other-ns-rb.yaml"
+	cat /tmp/generate/jx/jxboot-helmfile-resources/jxboot-helmfile-resources/templates/jx-gcpods-other-ns-rb.yaml
+
 	echo " >> DEBUG: /workspace/source/config-root/namespaces/jx/jxboot-helmfile-resources/gcpods-jx-test1-rb.yaml"
 	cat /workspace/source/config-root/namespaces/jx/jxboot-helmfile-resources/gcpods-jx-test1-rb.yaml
 	/tmp/jx-gitops namespace --dir-mode --dir $(OUTPUT_DIR)/namespaces

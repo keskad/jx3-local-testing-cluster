@@ -3,7 +3,7 @@ apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: jx-gcjobs
-  namespace: "jx"
+  namespace: "jx-git-operator"
   annotations:
     meta.helm.sh/release-name: 'jxboot-helmfile-resources'
   labels:

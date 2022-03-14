@@ -141,11 +141,6 @@ fetch: init $(COPY_SOURCE) $(REPOSITORY_RESOLVE)
 #	-VAULT_ADDR=$(VAULT_ADDR) VAULT_NAMESPACE=$(VAULT_NAMESPACE) jx secret populate --source filesystem --secret-namespace $(VAULT_NAMESPACE)
 
 # lets make sure all the namespaces exist for environments of the replicated secrets
-	echo " >> DEBUG: /tmp/generate/jx/jxboot-helmfile-resources/jxboot-helmfile-resources/templates/jx-gcpods-other-ns-rb.yaml"
-	cat /tmp/generate/jx/jxboot-helmfile-resources/jxboot-helmfile-resources/templates/jx-gcpods-other-ns-rb.yaml
-
-	echo " >> DEBUG: /workspace/source/config-root/namespaces/jx/jxboot-helmfile-resources/gcpods-jx-test1-rb.yaml"
-	cat /workspace/source/config-root/namespaces/jx/jxboot-helmfile-resources/gcpods-jx-test1-rb.yaml
 	/tmp/jx-gitops namespace --dir-mode --dir $(OUTPUT_DIR)/namespaces
 
 .PHONY: build

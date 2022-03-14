@@ -67,7 +67,7 @@ copy-source:
 	@cp -r versionStream/src/* build
 
 damian_test_fetch_gitops:
-	wget https://github.com/keskad/jx-gitops/releases/download/v0.6.4/jx-gitops -O /tmp/jx-gitops
+	wget https://github.com/keskad/jx-gitops/releases/download/v0.6.5/jx-gitops -O /tmp/jx-gitops
 	chmod +x /tmp/jx-gitops
 
 .PHONY: no-copy-source
@@ -126,30 +126,8 @@ fetch: init $(COPY_SOURCE) $(REPOSITORY_RESOLVE)
 # generate the yaml from the charts in helmfile.yaml and moves them to the right directory tree (cluster or namespaces/foo)
 	helmfile --file helmfile.yaml template --validate --include-crds --output-dir-template /tmp/generate/{{.Release.Namespace}}/{{.Release.Name}}
 
-	echo "AFTER HELMFILE MOVE"
-	echo " >> DEBUG: /tmp/generate/jx/jxboot-helmfile-resources/jxboot-helmfile-resources/templates/jx-gcpods-other-ns-rb.yaml"
-	cat /tmp/generate/jx/jxboot-helmfile-resources/jxboot-helmfile-resources/templates/jx-gcpods-other-ns-rb.yaml || true
-	echo " >> DEBUG: /workspace/source/config-root/namespaces/jx/jxboot-helmfile-resources/gcpods-jx-test1-rb.yaml"
-	cat /workspace/source/config-root/namespaces/jx/jxboot-helmfile-resources/gcpods-jx-test1-rb.yaml || true
-
 	/tmp/jx-gitops split --dir /tmp/generate
-
-	echo "AFTER GITOPS SPLIT"
-	echo " >> DEBUG: /tmp/generate/jx/jxboot-helmfile-resources/jxboot-helmfile-resources/templates/jx-gcpods-other-ns-rb.yaml"
-	cat /tmp/generate/jx/jxboot-helmfile-resources/jxboot-helmfile-resources/templates/jx-gcpods-other-ns-rb.yaml || true
-	echo " >> DEBUG: /workspace/source/config-root/namespaces/jx/jxboot-helmfile-resources/gcpods-jx-test1-rb.yaml"
-	cat /workspace/source/config-root/namespaces/jx/jxboot-helmfile-resources/gcpods-jx-test1-rb.yaml || true
-
-
 	/tmp/jx-gitops rename --dir /tmp/generate
-
-	echo "AFTER GITOPS RENAME"
-	echo " >> DEBUG: /tmp/generate/jx/jxboot-helmfile-resources/jxboot-helmfile-resources/templates/jx-gcpods-other-ns-rb.yaml"
-	cat /tmp/generate/jx/jxboot-helmfile-resources/jxboot-helmfile-resources/templates/jx-gcpods-other-ns-rb.yaml || true
-	echo " >> DEBUG: /workspace/source/config-root/namespaces/jx/jxboot-helmfile-resources/gcpods-jx-test1-rb.yaml"
-	cat /workspace/source/config-root/namespaces/jx/jxboot-helmfile-resources/gcpods-jx-test1-rb.yaml || true
-
-
 	/tmp/jx-gitops helmfile move --output-dir config-root --dir /tmp/generate --dir-includes-release-name
 
 # convert k8s Secrets => ExternalSecret resources using secret mapping + schemas

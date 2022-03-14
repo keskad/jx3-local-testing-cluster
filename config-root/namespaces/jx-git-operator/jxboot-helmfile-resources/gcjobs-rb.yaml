@@ -15,4 +15,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: jx-gcjobs
-    namespace: jx
+    namespace: "jx-git-operator"

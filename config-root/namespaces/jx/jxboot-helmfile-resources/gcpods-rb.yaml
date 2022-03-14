@@ -5,6 +5,7 @@ metadata:
   name: gcpods
   namespace: jx
   annotations:
+    gitops.jenkins-x.io/namespaceChange: keep-namespace-move-file
     meta.helm.sh/release-name: 'jxboot-helmfile-resources'
   labels:
     gitops.jenkins-x.io/pipeline: 'namespaces'

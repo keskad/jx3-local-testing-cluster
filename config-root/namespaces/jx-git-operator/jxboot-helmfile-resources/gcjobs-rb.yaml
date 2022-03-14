@@ -1,19 +1,18 @@
-# Source: jxboot-helmfile-resources/templates/jx-gcpods-other-ns-rb.yaml
+# Source: jxboot-helmfile-resources/templates/jx-gcjobs-rb.yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: gcpods-jx-test1
-  namespace: jx
+  name: gcjobs
+  namespace: "jx-git-operator"
   annotations:
-    gitops.jenkins-x.io/namespaceChange: keep-namespace-move-file
     meta.helm.sh/release-name: 'jxboot-helmfile-resources'
   labels:
     gitops.jenkins-x.io/pipeline: 'namespaces'
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: gcpods-per-namespace
+  kind: Role
+  name: gcjobs
 subjects:
   - kind: ServiceAccount
-    name: jx-gcpods
+    name: jx-gcjobs
     namespace: jx

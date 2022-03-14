@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: jx-gcjobs
-  namespace: "jx"
+  namespace: "jx-git-operator"
   annotations:
     meta.helm.sh/release-name: 'jxboot-helmfile-resources'
   labels:

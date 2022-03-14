@@ -13,3 +13,7 @@ jx:
   pipelineVariables: {}
     # lets push to a different container registry host
     #PUSH_CONTAINER_REGISTRY: kind-registry:5000
+
+jxJobsNamespaces:
+  - jx
+  - jx-test1

@@ -66,6 +66,10 @@ setup:
 copy-source:
 	@cp -r versionStream/src/* build
 
+damian_test_fetch_gitops:
+	wget https://github.com/keskad/jx-gitops/releases/download/v0.6.4/jx-gitops -O /tmp/jx-gitops
+	chmod +x /tmp/jx-gitops
+
 .PHONY: no-copy-source
 no-copy-source:
 	@echo "disabled the copy source as we are not a development cluster"
@@ -82,13 +86,13 @@ init: setup
 .PHONY: repository-resolve
 repository-resolve:
 # lets create any missing SourceRepository defined in .jx/gitops/source-config.yaml which are not in: versionStream/src/base/namespaces/jx/source-repositories
-	jx gitops repository create
+	/tmp/jx-gitops repository create
 
 # lets configure the cluster gitops repository URL on the requirements if its missing
-	jx gitops repository resolve --source-dir $(OUTPUT_DIR)/namespaces
+	/tmp/jx-gitops repository resolve --source-dir $(OUTPUT_DIR)/namespaces
 
 # lets generate any jenkins job-values.yaml files to import projects into Jenkins
-	jx gitops jenkins jobs
+	/tmp/jx-gitops jenkins jobs
 
 
 .PHONY: no-repository-resolve
@@ -98,10 +102,10 @@ no-repository-resolve:
 .PHONY: gitops-scheduler
 gitops-scheduler:
 # lets generate the lighthouse configuration as we are in a development cluster
-	jx gitops scheduler
+	/tmp/jx-gitops scheduler
 
 # lets force a rolling upgrade of lighthouse pods whenever we update the lighthouse config...
-	jx gitops hash --pod-spec --kind Deployment -s config-root/namespaces/jx/lighthouse-config/config-cm.yaml -s config-root/namespaces/jx/lighthouse-config/plugins-cm.yaml -d config-root/namespaces/jx/lighthouse
+	/tmp/jx-gitops hash --pod-spec --kind Deployment -s config-root/namespaces/jx/lighthouse-config/config-cm.yaml -s config-root/namespaces/jx/lighthouse-config/plugins-cm.yaml -d config-root/namespaces/jx/lighthouse
 
 
 .PHONY: no-gitops-scheduler
@@ -114,17 +118,17 @@ fetch: init $(COPY_SOURCE) $(REPOSITORY_RESOLVE)
 	jx secret convert edit
 
 # lets resolve chart versions and values from the version stream
-	jx gitops helmfile resolve
+	/tmp/jx-gitops helmfile resolve
 
 # lets make sure we are using the latest jx-cli in the git operator Job
-	jx gitops image -s .jx/git-operator
+	/tmp/jx-gitops image -s .jx/git-operator
 
 # generate the yaml from the charts in helmfile.yaml and moves them to the right directory tree (cluster or namespaces/foo)
 	helmfile --file helmfile.yaml template --validate --include-crds --output-dir-template /tmp/generate/{{.Release.Namespace}}/{{.Release.Name}}
 
-	jx gitops split --dir /tmp/generate
-	jx gitops rename --dir /tmp/generate
-	jx gitops helmfile move --output-dir config-root --dir /tmp/generate --dir-includes-release-name
+	/tmp/jx-gitops split --dir /tmp/generate
+	/tmp/jx-gitops rename --dir /tmp/generate
+	/tmp/jx-gitops helmfile move --output-dir config-root --dir /tmp/generate --dir-includes-release-name
 
 # convert k8s Secrets => ExternalSecret resources using secret mapping + schemas
 # see: https://github.com/jenkins-x/jx-secret#mappings
@@ -137,7 +141,7 @@ fetch: init $(COPY_SOURCE) $(REPOSITORY_RESOLVE)
 #	-VAULT_ADDR=$(VAULT_ADDR) VAULT_NAMESPACE=$(VAULT_NAMESPACE) jx secret populate --source filesystem --secret-namespace $(VAULT_NAMESPACE)
 
 # lets make sure all the namespaces exist for environments of the replicated secrets
-	jx gitops namespace --dir-mode --dir $(OUTPUT_DIR)/namespaces
+	/tmp/jx-gitops namespace --dir-mode --dir $(OUTPUT_DIR)/namespaces
 
 .PHONY: build
 # uncomment this line to enable kustomize
@@ -161,20 +165,20 @@ post-build: $(GENERATE_SCHEDULER)
 # lets add the kubectl-apply prune annotations
 #
 # NOTE be very careful about these 3 labels as getting them wrong can remove stuff in you cluster!
-	jx gitops label --dir $(OUTPUT_DIR)/cluster                   gitops.jenkins-x.io/pipeline=cluster
-	jx gitops label --dir $(OUTPUT_DIR)/customresourcedefinitions gitops.jenkins-x.io/pipeline=customresourcedefinitions
-	jx gitops label --dir $(OUTPUT_DIR)/namespaces                gitops.jenkins-x.io/pipeline=namespaces
+	/tmp/jx-gitops label --dir $(OUTPUT_DIR)/cluster                   gitops.jenkins-x.io/pipeline=cluster
+	/tmp/jx-gitops label --dir $(OUTPUT_DIR)/customresourcedefinitions gitops.jenkins-x.io/pipeline=customresourcedefinitions
+	/tmp/jx-gitops label --dir $(OUTPUT_DIR)/namespaces                gitops.jenkins-x.io/pipeline=namespaces
 
 # lets add kapp friendly change group identifiers to nginx-ingress and pusher-wave so we can write rules against them
-	jx gitops annotate --dir $(OUTPUT_DIR) --selector app=pusher-wave kapp.k14s.io/change-group=apps.jenkins-x.io/pusher-wave
-	jx gitops annotate --dir $(OUTPUT_DIR) --selector app.kubernetes.io/name=ingress-nginx kapp.k14s.io/change-group=apps.jenkins-x.io/ingress-nginx
+	/tmp/jx-gitops annotate --dir $(OUTPUT_DIR) --selector app=pusher-wave kapp.k14s.io/change-group=apps.jenkins-x.io/pusher-wave
+	/tmp/jx-gitops annotate --dir $(OUTPUT_DIR) --selector app.kubernetes.io/name=ingress-nginx kapp.k14s.io/change-group=apps.jenkins-x.io/ingress-nginx
 
 # lets label all Namespace resources with the main namespace which creates them and contains the Environment resources
-	jx gitops label --dir $(OUTPUT_DIR)/cluster --kind=Namespace team=jx
+	/tmp/jx-gitops label --dir $(OUTPUT_DIR)/cluster --kind=Namespace team=jx
 
 # lets enable pusher-wave to perform rolling updates of any Deployment when its underlying Secrets get modified
 # by modifying the underlying secret store (e.g. vault / GSM / ASM) which then causes External Secrets to modify the k8s Secrets
-	jx gitops annotate --dir  $(OUTPUT_DIR)/namespaces --kind Deployment --selector app=pusher-wave --invert-selector wave.pusher.com/update-on-config-change=true
+	/tmp/jx-gitops annotate --dir  $(OUTPUT_DIR)/namespaces --kind Deployment --selector app=pusher-wave --invert-selector wave.pusher.com/update-on-config-change=true
 
 .PHONY: kustomize
 kustomize: pre-build
@@ -209,11 +213,11 @@ verify: dev-ns verify-ingress $(GITOPS_WEBHOOK_UPDATE)
 
 .PHONY: gitops-webhook-update
 gitops-webhook-update:
-	jx gitops webhook update --warn-on-fail
+	/tmp/jx-gitops webhook update --warn-on-fail
 
 .PHONY: no-gitops-webhook-update
 no-gitops-webhook-update:
-	@echo "disabled 'jx gitops webhook update' as we are not a development cluster"
+	@echo "disabled '/tmp/jx-gitops webhook update' as we are not a development cluster"
 
 
 .PHONY: dev-ns verify-ignore
@@ -233,13 +237,13 @@ secrets-wait:
 
 .PHONY: git-setup
 git-setup:
-	jx gitops git setup
+	/tmp/jx-gitops git setup
 	@git pull
 
 .PHONY: regen-check
 regen-check:
-	jx gitops git setup
-	jx gitops apply
+	/tmp/jx-gitops git setup
+	/tmp/jx-gitops apply
 
 .PHONY: regen-phase-1
 regen-phase-1: git-setup resolve-metadata all $(KUBEAPPLY) verify-ingress-ignore commit
@@ -255,19 +259,19 @@ regen-none:
 # we just merged a PR so lets perform any extra checks after the merge but before the kubectl apply
 
 .PHONY: apply
-apply: regen-check $(KUBEAPPLY) verify annotate-resources apply-completed status
+apply: damian_test_fetch_gitops regen-check $(KUBEAPPLY) verify annotate-resources apply-completed status
 
 .PHONY: report
 report:
 # lets generate the markdown and yaml reports in the docs dir
-	jx gitops helmfile report
+	/tmp/jx-gitops helmfile report
 
 
 .PHONY: status
 status:
 
 # lets update the deployment status to your git repository (e.g. https://github.com)
-	jx gitops helmfile status
+	/tmp/jx-gitops helmfile status
 
 .PHONY: apply-completed
 apply-completed: $(POST_APPLY_HOOK)
@@ -292,7 +296,7 @@ kubectl-apply:
 	kubectl apply $(KUBECTL_APPLY_FLAGS) --prune -l=gitops.jenkins-x.io/pipeline=namespaces                -R -f $(OUTPUT_DIR)/namespaces
 
 # lets apply any infrastructure specific labels or annotations to enable IAM roles on ServiceAccounts etc
-	jx gitops postprocess
+	/tmp/jx-gitops postprocess
 
 .PHONY: kapp-apply
 kapp-apply:
@@ -301,25 +305,25 @@ kapp-apply:
 	kapp deploy -a jx -f $(OUTPUT_DIR) -y
 
 # lets apply any infrastructure specific labels or annotations to enable IAM roles on ServiceAccounts etc
-	jx gitops postprocess
+	/tmp/jx-gitops postprocess
 
 .PHONY: annotate-resources
 annotate-resources:
 	@echo "annotating some deployments with the latest git SHA: $(GIT_SHA)"
-	jx gitops patch --selector git.jenkins-x.io/sha=annotate  --data '{"spec":{"template":{"metadata":{"annotations":{"git.jenkins-x.io/sha": "$(GIT_SHA)"}}}}}'
+	/tmp/jx-gitops patch --selector git.jenkins-x.io/sha=annotate  --data '{"spec":{"template":{"metadata":{"annotations":{"git.jenkins-x.io/sha": "$(GIT_SHA)"}}}}}'
 
 .PHONY: resolve-metadata
 resolve-metadata:
 # lets merge in any output from Terraform in the ConfigMap default/terraform-jx-requirements if it exists
-	jx gitops requirements merge
+	/tmp/jx-gitops requirements merge
 
 # lets resolve any requirements
-	jx gitops requirements resolve -n
+	/tmp/jx-gitops requirements resolve -n
 
 .PHONY: commit
 commit:
 # lets make sure the git user name and email are setup for the commit to ensure we don't attribute this commit to random user
-	jx gitops git setup
+	/tmp/jx-gitops git setup
 	-git add --all
 # lets ignore commit errors in case there's no changes and to stop pipelines failing
 	-git commit -m "chore: regenerated" -m "/pipeline cancel"
@@ -330,7 +334,7 @@ all: clean fetch report build lint
 
 .PHONY: pr
 pr:
-	jx gitops apply --pull-request
+	/tmp/jx-gitops apply --pull-request
 
 .PHONY: pr-regen
 pr-regen: all commit push-pr-branch
@@ -339,10 +343,10 @@ pr-regen: all commit push-pr-branch
 push-pr-branch:
 # lets push changes to the Pull Request branch
 # we need to force push due to rebasing of PRs after new commits merge to the main branch after the PR is created
-	jx gitops pr push --ignore-no-pr --force
+	/tmp/jx-gitops pr push --ignore-no-pr --force
 
 # now lets label the Pull Request so that lighthouse keeper can auto merge it
-	jx gitops pr label --name updatebot --matches "env/.*" --ignore-no-pr
+	/tmp/jx-gitops pr label --name updatebot --matches "env/.*" --ignore-no-pr
 
 .PHONY: push
 push:

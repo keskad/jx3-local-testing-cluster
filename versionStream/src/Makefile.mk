@@ -227,13 +227,15 @@ verify-ignore: verify-ingress-ignore
 secrets-populate:
 # lets populate any missing secrets we have a generator in `charts/repoName/chartName/secret-schema.yaml`
 # they can be modified/regenerated at any time via `jx secret edit`
-	-VAULT_ADDR=$(VAULT_ADDR) VAULT_NAMESPACE=$(VAULT_NAMESPACE) EXTERNAL_VAULT=$(EXTERNAL_VAULT) jx secret populate --secret-namespace $(VAULT_NAMESPACE)
+# 	-VAULT_ADDR=$(VAULT_ADDR) VAULT_NAMESPACE=$(VAULT_NAMESPACE) EXTERNAL_VAULT=$(EXTERNAL_VAULT) jx secret populate --secret-namespace $(VAULT_NAMESPACE)
+	echo "dummy"
 
 
 .PHONY: secrets-wait
 secrets-wait:
 # lets wait for the ExternalSecrets service to populate the mandatory Secret resources
-	VAULT_ADDR=$(VAULT_ADDR) jx secret wait -n jx
+	#VAULT_ADDR=$(VAULT_ADDR) jx secret wait -n jx
+	echo "dummy"
 
 .PHONY: git-setup
 git-setup:

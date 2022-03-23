@@ -1,0 +1,22 @@
+# Source: springboot-example-project/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    meta.helm.sh/release-name: 'springboot-example-project'
+  name: springboot-example-project
+  namespace: jx-staging
+  labels:
+    gitops.jenkins-x.io/pipeline: 'namespaces'
+spec:
+  rules:
+    - http:
+        paths:
+          - pathType: ImplementationSpecific
+            backend:
+              service:
+                name: springboot-example-project
+                port:
+                  number: 80
+      host: springboot-example-project.jx-staging.k3s-dev.keskad.pl
